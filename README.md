@@ -146,7 +146,7 @@ Evidence: `reports/options_mispricing.md`.
 ## ━━━ Run it ━━━
 
 ```bash
-git clone <this-repo> && cd heston-nifty
+git clone <this-repo> && cd codespaces-blank   # or your repo name, if renamed
 pip install -r requirements.txt          # pandas · numpy · scipy · pyarrow · pytest …
 
 # ── full pipeline, in dependency order ─────────────────────────────

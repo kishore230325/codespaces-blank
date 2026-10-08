@@ -1,0 +1,29 @@
+# Stage 8 OOS config — test block ONLY. Frozen rules/thresholds from Stage 5.
+# No tuning on this block; single evaluation pass.
+data:
+  processed: "data/processed/nifty_daily.parquet"
+block:
+  start: "2023-01-05"
+  end: "2025-12-31"
+horizons: [1, 5]
+monte_carlo:
+  N: 20000
+  seed_base: 7000        # distinct seed stream from validation block
+calibration:
+  window: 504
+  weights: {mean: 1.0, var: 1.0, ac1: 1.0, rho: 0.5}
+  vintage_start: "2022-12-01"
+  vintage_end: "2025-11-30"
+state:
+  v0_span: 30
+  mu_window: 504
+conventions:            # IDENTICAL to Stage 5 — frozen, not re-tuned
+  hurdle: 0.001
+  prob_thresh: 0.5
+  score_thresh: 0.0
+outputs:
+  table: "data/processed/signals_oos.parquet"
+  vintages: "reports/signal_vintages_oos.csv"
+  report: "reports/signal_diagnostics_oos.md"
+  figures: "reports/figures"
+  figure_prefix: "signals_oos"

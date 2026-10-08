@@ -1,0 +1,28 @@
+# Stage 2 frozen config — data v1. Edit dates only; do not tune to results.
+period:
+  start: "2015-01-01"
+  end: "2025-12-31"
+sources:
+  # Priority: local NSE CSVs in data/raw/ override yfinance automatically.
+  nifty_symbol: "^NSEI"
+  vix_symbol: "^INDIAVIX"
+  nifty_csv: null        # e.g. "data/raw/nifty_spot_raw.csv"
+  vix_csv: null          # e.g. "data/raw/indiavix_raw.csv"
+  rf_csv: null           # e.g. "data/raw/riskfree_91d.csv"  (preferred: RBI 91D)
+  holidays_csv: null     # e.g. "data/raw/nse_holidays.csv"
+  rf_fallback_annual: 0.065   # exploratory only; production requires rf_csv
+tradable_instrument_v1: "spot_proxy"
+# Spot is not directly tradable; futures/ETF basis handled as robustness in Stage 7+.
+execution_rule: "signal(t close) -> trade(t+1 open)"
+costs_bps_per_side: 5
+cleaning:
+  max_fill_days: 5
+  stale_days: 5
+splits:
+  train_end: "2020-12-31"
+  val_end: "2022-12-31"
+  embargo_days: 5
+outputs:
+  processed: "data/processed/nifty_daily.parquet"
+  report: "reports/data_quality.md"
+seed: 42

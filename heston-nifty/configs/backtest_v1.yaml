@@ -1,0 +1,10 @@
+# Stage 6 frozen config — engine mechanics. No thresholds tuned here.
+costs:
+  cost_bps_per_side: 5.0   # from configs/data_v1.yaml (STT+brokerage+charges estimate)
+  slippage_bps: 2.0        # NEW in Stage 6: symmetric frictional bps (no intraday data for impact)
+modes: ["longshort", "longflat"]  # smoke-run both; selection deferred to Stage 7+
+inputs:
+  signals: "data/processed/signals_validation.parquet"
+  ohlc: "data/processed/nifty_daily.parquet"
+outputs:
+  report: "reports/backtest_engine_validation.md"

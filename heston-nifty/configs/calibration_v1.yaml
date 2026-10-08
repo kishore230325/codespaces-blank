@@ -1,0 +1,19 @@
+# Stage 3 frozen config — calibration v1. Windows fixed BEFORE seeing results.
+data:
+  processed: "data/processed/nifty_daily.parquet"
+  train_end: "2020-12-31"     # calibration may use train block ONLY (no val/test)
+rolling:
+  window: 504                 # ~2y of NSE trading days
+  step: 21                    # monthly recalibration
+  weights: {mean: 1.0, var: 1.0, ac1: 1.0, rho: 0.5}
+sensitivity:
+  n_starts: 5
+  seed: 42
+  window_tail: 504            # multistart run on last train window
+options_implied:
+  snapshot_csv: null          # V1: null -> reported UNAVAILABLE (V2 work)
+  r_annual: 0.065
+outputs:
+  table: "reports/calibration_rolling.csv"
+  report: "reports/calibration_v1.md"
+  figures: "reports/figures"

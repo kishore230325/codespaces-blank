@@ -1,0 +1,27 @@
+check,metric,value,tolerance,passed,note
+nonnegativity,min(V) over 6.3M draws,9.436432416342322e-13,>= 0,True,k=2.5 th=0.045 e=0.55
+cond_mean,E[Vn|V=0.01] vs 0.010346,0.0006858815298084005,< 0.02,True,
+cond_var,Var[Vn|V=0.01] vs 0.000012,0.00414203735074474,< 0.02,True,
+cond_mean,E[Vn|V=0.04] vs 0.040049,1.6687679067513116e-05,< 0.02,True,
+cond_var,Var[Vn|V=0.04] vs 0.000048,0.0052462669918823665,< 0.02,True,
+cond_mean,E[Vn|V=0.16] vs 0.158865,3.3963156102527646e-05,< 0.02,True,
+cond_var,Var[Vn|V=0.16] vs 0.000189,0.0015521712936201685,< 0.02,True,
+variance_law,KS stat (ncx2 df=1.49),0.004764359179034117,< 0.01,True,"KS stat=0.0048, p=2.27e-04 (p rejects at N=200k by power; weak scheme judged by moments + prices, which pass)"
+correlation,"corr(dlogS,dV) rho=0.7",0.6998184753209206,"in (0.05,1.0)",True,"via variance-increment term, not correlated normals"
+correlation,"corr(dlogS,dV) rho=-0.7",-0.7002714213288836,"in (-1.0,-0.05)",True,"via variance-increment term, not correlated normals"
+correlation,"corr(dlogS,dV) rho=0.0",-0.0004843739763814333,"in (-0.05,0.05)",True,"via variance-increment term, not correlated normals"
+martingale,E[S_T]=102.561 vs fwd=102.532 (0.92 SE),0.9183534825797034,< 3.0 SE,True,correction skipped: 0.00e+00
+convergence,call(n=1) vs COS=6.798,6.80023292546435,bias shrinks with n,True,"rel err=+0.026%, SE=0.025, exp-branch=0.0%"
+convergence,call(n=2) vs COS=6.798,6.8249138314791695,bias shrinks with n,True,"rel err=+0.390%, SE=0.025, exp-branch=0.0%"
+convergence,call(n=4) vs COS=6.798,6.80429295409513,bias shrinks with n,True,"rel err=+0.086%, SE=0.025, exp-branch=0.0%"
+convergence,call(n=13) vs COS=6.798,6.811945767155255,bias shrinks with n,True,"rel err=+0.199%, SE=0.025, exp-branch=0.0%"
+convergence,call(n=52) vs COS=6.798,6.825164123226348,bias shrinks with n,True,"rel err=+0.393%, SE=0.025, exp-branch=0.0%"
+convergence_bench,COS benchmark,6.798432634032654,reference,True,Stage-3-validated pricer
+extreme,feller_violated_fit: finite & V>=0 & S>0,1.0,== 1,True,"exp-branch=26.1%, skipped-M=0.00e+00"
+extreme,huge_volvol: finite & V>=0 & S>0,1.0,== 1,True,"exp-branch=73.0%, skipped-M=0.00e+00"
+extreme,fast_kappa: finite & V>=0 & S>0,1.0,== 1,True,"exp-branch=0.0%, skipped-M=0.00e+00"
+extreme,zero_V0: finite & V>=0 & S>0,1.0,== 1,True,"exp-branch=15.9%, skipped-M=0.00e+00"
+extreme,rho_high: finite & V>=0 & S>0,1.0,== 1,True,"exp-branch=0.0%, skipped-M=0.00e+00"
+extreme,rho_low: finite & V>=0 & S>0,1.0,== 1,True,"exp-branch=0.0%, skipped-M=0.00e+00"
+nonnegativity,min(V) over 6.3M draws,0.0,>= 0,True,k=4.85 th=0.0282 e=0.9357
+martingale,E[S_T]=102.547 vs fwd=102.532 (0.65 SE),0.6515541165715154,< 3.0 SE,True,correction skipped: 0.00e+00

@@ -1,0 +1,27 @@
+# Stage 5 frozen config. Thresholds are a-priori measurement conventions, NOT tuned.
+data:
+  processed: "data/processed/nifty_daily.parquet"
+block:              # validation block only; test block untouched until Stage 8
+  start: "2021-01-05"
+  end: "2022-12-31"
+horizons: [1, 5]
+monte_carlo:
+  N: 20000
+  seed_base: 1000
+calibration:
+  window: 504
+  weights: {mean: 1.0, var: 1.0, ac1: 1.0, rho: 0.5}
+  vintage_start: "2020-12-01"   # first vintage serves Jan-2021 days
+  vintage_end: "2022-11-30"     # latest vintage <= t always
+state:
+  v0_span: 30
+  mu_window: 504
+conventions:        # fixed BEFORE seeing results; Stage 6 may not re-tune on this block
+  hurdle: 0.001     # 2 x 5 bps/side
+  prob_thresh: 0.5
+  score_thresh: 0.0 # for signed scores (B, C)
+outputs:
+  table: "data/processed/signals_validation.parquet"
+  vintages: "reports/signal_vintages.csv"
+  report: "reports/signal_diagnostics.md"
+  figures: "reports/figures"

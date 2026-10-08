@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+
+# Local-only data (reproducible via --demo; real NSE/RBI files stay private)
+data/raw/
+# NOTE: data/processed/ is intentionally TRACKED (small demo artifacts that
+# regenerate the evidence story end-to-end).
